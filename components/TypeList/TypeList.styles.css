@@ -1,0 +1,7 @@
+.typelist {
+  @apply list-disc font-sans font-medium leading-loose text-hunter mb-8 list-inside pl-6;
+
+  & + .title {
+    @apply mt-16;
+  }
+}

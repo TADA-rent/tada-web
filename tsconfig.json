@@ -7,14 +7,33 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@*": ["app/*"],
+      "@pages/*": ["pages/*"],
+      "@lib/*": ["lib/*"],
+      "@interfaces": ["interfaces/index.ts"],
+      "@graphql/*": ["graphql/*"],
+      "@queries": ["queries.ts"],
+      "@components": ["components/index.ts"],
+      "@components/*": ["components/*"],
+      "@store": ["store/index.ts"],
+      "@styles/*": ["styles/*"],
+      "@types/*": ["types/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

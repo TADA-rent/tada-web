@@ -1,26 +1,35 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+@layer base {
   body {
-    color: white;
-    background: black;
+    @apply font-sans;
+    @apply font-medium;
+    @apply bg-linen;
+    @apply text-hunter;
+    @apply antialiased;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("../public/fonts/Satoshi-Variable.woff2") format("woff2-variations");
+    font-weight: 125 950;
+    font-stretch: 75% 125%;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("../public/fonts/Satoshi-VariableItalic.woff2") format("woff2-variations");
+    font-weight: 125 950;
+    font-stretch: 75% 125%;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Magic Ramen";
+    src: url("../public/fonts/Magic-Ramen.woff2") format("woff2");
+    font-weight: 500;
   }
 }

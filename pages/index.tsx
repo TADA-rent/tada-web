@@ -1,71 +1,189 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { FeatureGroup1, Logo } from '@components'
+import { Footer } from '@components/Home/Footer'
+import { Launch } from '@components/Home/Launch'
+import clsx from 'clsx'
+import { FeatureGroup2 } from 'components/Home/FeatureGroup2'
+import { FeatureGroup3 } from 'components/Home/FeatureGroup3'
+import { Header } from 'components/Home/Header'
+import { Price } from 'components/Home/Price'
+import { gsap } from 'gsap'
+import { GSDevTools } from 'gsap/dist/GSDevTools'
+import { ScrollSmoother } from 'gsap/dist/ScrollSmoother'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { SplitText } from 'gsap/dist/SplitText'
+import { useLayoutEffect, useRef } from 'react'
 
-export default function Home() {
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, GSDevTools)
+}
+
+export default function IndexPage() {
+  const isDark = Math.random() >= 0.5
+  const comp = useRef<HTMLDivElement>(null)
+  const tl = useRef<any>(null)
+  const tools = useRef<any>(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollSmoother.create({
+        effects: true,
+        smooth: 1.75, // seconds it takes to "catch up" to native scroll position
+      })
+      tl.current = gsap.timeline()
+
+      const titleParent = new SplitText('.header-tada', { type: 'chars', charsClass: 'overflow-hidden' })
+      const titleChild = new SplitText('.header-tada', { type: 'chars', charsClass: 'inline-block' })
+
+      const splitTextParent = new SplitText('.header-title', { type: 'words', wordsClass: 'overflow-hidden' })
+      const splitTextChild = new SplitText('.header-title', { type: 'words', wordsClass: 'inline-block' })
+
+      const intro = gsap
+        .timeline({ id: 'intro' })
+        .set('.header-intro', { zIndex: 50 })
+        .set('.footer', { zIndex: -10 })
+        .set('.header-gradient', { opacity: 0 })
+        .set('.header-content', { opacity: 0, y: 100 })
+        .from(titleChild.chars, {
+          duration: 2,
+          yPercent: 250,
+          rotation: '40deg',
+          stagger: 0.05,
+          ease: 'elastic.out(1, 0.3)',
+        })
+        .to('.header-curtain', { height: 0, duration: 1, delay: 0.75, ease: 'power4.out' })
+        .to('.header-video', { autoAlpha: 1 }, '<')
+        .fromTo(
+          '.header-video',
+          { left: '0', top: '0', right: '0', bottom: '0', borderRadius: 0, ease: 'power2.out' },
+          {
+            left: '8rem',
+            top: '8rem',
+            right: '8rem',
+            bottom: '20rem',
+            ease: 'back.out(1.7)',
+            duration: 1.5,
+            borderRadius: '2rem',
+          },
+          '-=25%',
+        )
+        .from(
+          splitTextChild.words,
+          {
+            duration: 2,
+            yPercent: 150,
+            rotation: '20deg',
+            stagger: 0.05,
+            ease: 'power2.out',
+          },
+          '<-40%',
+        )
+        .to('.header-gradient', { autoAlpha: 1, duration: 1, ease: 'power2.out' }, '-=0.25')
+        .to('.header-content', { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, '<25%')
+        .set('.header-intro', { zIndex: -9 })
+
+      ScrollTrigger.create({
+        trigger: '.featuregroup1',
+        start: 'top bottom',
+        animation: gsap.timeline().from('.bestlandlord', { opacity: 0, y: -10, duration: 1.25, ease: 'power2.out' }),
+      })
+
+      gsap.set('.featuregroup1-item', { opacity: 0, y: 10, scale: 0.98 })
+      gsap.set('.featuregroup1-content, .featuregroup1-title', { opacity: 0 })
+      ScrollTrigger.batch('.featuregroup1-item', {
+        start: 'top 90%',
+        onEnter: (batch) =>
+          gsap.timeline().to(batch, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.5, duration: 1.25, ease: 'power2.out' }),
+        onEnterBack: (batch) =>
+          gsap.timeline().to(batch, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.5, duration: 0.5, ease: 'power2.out' }),
+        onLeave: (batch) =>
+          gsap
+            .timeline()
+            .to(batch, { autoAlpha: 0, y: 10, scale: 1, stagger: 0.5, duration: 1.25, ease: 'power2.out' }),
+      })
+
+      ScrollTrigger.batch('.featuregroup1-title', {
+        start: 'top 75%',
+        onEnter: (batch) => gsap.timeline().to(batch, { autoAlpha: 1, ease: 'power2.out', duration: 1 }),
+      })
+
+      ScrollTrigger.batch('.featuregroup1-content', {
+        start: 'top 75%',
+        onEnter: (batch) => gsap.timeline().to(batch, { autoAlpha: 1, ease: 'power2.out', duration: 1 }),
+      })
+
+      ScrollTrigger.create({
+        trigger: '.featuregroup2',
+        start: 'top bottom',
+        animation: gsap
+          .timeline()
+          .from('.featuregroup2-image', { opacity: 0, y: -10, duration: 1.25, ease: 'power2.out' })
+          .from('.featuregroup2-title', { opacity: 0, x: -5, duration: 1.25, ease: 'power2.out' }),
+      })
+
+      ScrollTrigger.create({
+        trigger: '.featuregroup2-content',
+        start: 'top bottom',
+        animation: gsap.timeline().from('.featuregroup2-content', { opacity: 0 }).from('.featuregroup2-subtitle', {
+          opacity: 0,
+          y: -5,
+          duration: 1.25,
+          ease: 'power2.out',
+        }),
+      })
+    }, comp) // <- IMPORTANT! Scopes selector text
+
+    gsap.set('.featuregroup2-listitem', { opacity: 0, y: 10, scale: 0.98 })
+    ScrollTrigger.batch('.featuregroup2-listitem', {
+      start: 'top 90%',
+      onEnter: (batch) =>
+        gsap.to(batch, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.5, duration: 1.25, ease: 'power2.out' }),
+    })
+
+    gsap.set('.featuregroup3-article', { opacity: 0, y: 10, scale: 0.98 })
+    ScrollTrigger.batch('.featuregroup3-article', {
+      start: 'top 90%',
+      onEnter: (batch) =>
+        gsap.to(batch, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.5, duration: 1.25, ease: 'power2.out' }),
+    })
+
+    ScrollTrigger.create({
+      trigger: '.price-feature',
+      start: 'top bottom',
+      onEnter: () => {
+        gsap.set('.footer', { zIndex: -5 })
+        gsap.set('.header-intro', { zIndex: -10 })
+      },
+      onLeaveBack: () => {
+        gsap.set('.footer', { zIndex: -10 })
+        gsap.set('.header-intro', { zIndex: 0 })
+      },
+    })
+
+    return () => ctx.revert() // cleanup
+  }, [])
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div ref={comp} className={clsx(isDark && 'dark')}>
+      <div className="fixed left-8 top-8 w-40 z-50">
+        <Logo />
+      </div>
+      <div className="fixed inset-0 header-intro">
+        <Header />
+      </div>
+      <div id="smooth-wrapper" className="relative z-20">
+        <div id="smooth-content">
+          <div className="top-[100vh] pb-[150vh] relative">
+            <FeatureGroup1 />
+            <FeatureGroup2 />
+            <FeatureGroup3 />
+            <Price />
+          </div>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </div>
+      <div className="fixed bottom-0 w-full footer">
+        <Launch />
+        <Footer />
+      </div>
     </div>
   )
 }

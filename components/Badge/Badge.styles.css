@@ -1,0 +1,60 @@
+.badge {
+  @apply inline-flex items-center font-medium font-sans;
+
+  &:not(.badge-lg),
+  &:not(.badge-lg-with-dot) {
+    @apply px-2.5 py-0.5 text-xs;
+  }
+
+  &.badge-lg {
+    @apply px-3 py-0.5 text-sm;
+  }
+
+  &.badge-lg-with-dot {
+    @apply px-2.5 py-0.5 text-sm;
+  }
+
+  &:not(.badge-rounded) {
+    @apply rounded-full;
+  }
+
+  &.badge-rounded {
+    @apply rounded;
+  }
+
+  &.badge-gray {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  &.badge-red {
+    @apply bg-red-100 text-red-800;
+  }
+
+  &.badge-green {
+    @apply bg-green-100 text-green-800;
+  }
+
+  &.badge-blue {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  &.badge-indigo {
+    @apply bg-indigo-100 text-indigo-800;
+  }
+
+  &.badge-purple {
+    @apply bg-purple-100 text-purple-800;
+  }
+
+  &.badge-pink {
+    @apply bg-pink-100 text-pink-800;
+  }
+
+  .badge-dot {
+    @apply mr-1.5 h-2 w-2;
+
+    &.badge-dot-lg {
+      @apply -ml-1;
+    }
+  }
+}

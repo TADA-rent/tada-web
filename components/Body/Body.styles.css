@@ -1,0 +1,11 @@
+.body {
+  @apply font-sans font-medium leading-loose text-hunter mb-6;
+
+  & + .title {
+    @apply mt-16;
+  }
+
+  a {
+    @apply underline underline-offset-4 text-punch;
+  }
+}
