@@ -4,7 +4,7 @@ export const Launch = () => {
       <div className="max-w-screen-xl mx-auto px-6 py-32 relative w-full">
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-2">
           <div className="col-span-3 space-y-6">
-            <h2 className="text-3xl lg:text-7xl font-extrabold tracking-tight">We’re launching in Canada soon.</h2>
+            <h2 className="text-5xl lg:text-7xl font-title tracking-tight">We’re launching in Canada soon.</h2>
             <p className="text-lg">Sign up to be informed when we’ll be available.</p>
           </div>
           <div className="col-span-3 flex items-center justify-end">

@@ -38,7 +38,7 @@ export const Header = () => {
 
   return (
     <header className="min-h-screen relative overflow-hidden cool-shadow dark:bg-hunter bg-linen">
-      <div className="absolute inset-32 overflow-hidden header-video shadow-cool ">
+      <div className="absolute inset-0 overflow-hidden header-video shadow-cool ">
         <video
           src="homevideo.mp4"
           autoPlay

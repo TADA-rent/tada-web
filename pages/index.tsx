@@ -70,33 +70,44 @@ export default function IndexPage() {
             .to('.header-curtain', { height: 0, duration: 1, delay: 0.75, ease: 'power4.out' })
             .set('.header-curtain', { display: 'none' })
             .to('.header-video', { autoAlpha: 1 }, '<')
-            .fromTo(
+            .to(
               '.header-video',
-              { left: '0', top: '0', right: '0', bottom: '0', borderRadius: 0, ease: 'power2.out' },
               {
                 left: isMobile ? '0' : '50%',
-                top: isMobile ? '0' : '4rem',
-                right: isMobile ? '0' : '4rem',
-                bottom: isMobile ? '0' : '4rem',
-                ease: 'back.out(1.7)',
-                delay: 0.5,
-                duration: 1.5,
-                borderRadius: isMobile ? '0' : '2rem',
+                top: '0',
+                right: '0',
+                bottom: '0',
+                borderRadius: 0,
+                ease: 'power4.out',
+                duration: 1.75,
               },
-              '-=25%',
+              '-=35%',
             )
             .from(
               splitTextChild.words,
               {
                 duration: 2,
-                yPercent: 150,
+                yPercent: 250,
                 rotation: '20deg',
                 stagger: 0.05,
                 ease: 'power2.out',
               },
-              '<-40%',
+              '<',
             )
-            .to('.header-gradient', { autoAlpha: 1, duration: 1, ease: 'power2.out' }, '-=0.25')
+            .to(
+              '.header-video',
+              {
+                top: isMobile ? '0' : '4rem',
+                right: isMobile ? '0' : '4rem',
+                bottom: isMobile ? '0' : '4rem',
+                ease: 'back.out(1.8)',
+                delay: 0.5,
+                duration: 1.75,
+                borderRadius: isMobile ? '0' : '2rem',
+              },
+              '-=40%',
+            )
+            .to('.header-gradient', { autoAlpha: 1, duration: 1, ease: 'power2.out' }, '<')
             .to('.header-content', { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, '<25%')
             .set('.header-intro', { zIndex: -9 })
 
@@ -205,7 +216,7 @@ export default function IndexPage() {
       </div>
       <div id="smooth-wrapper" className="relative z-20">
         <div id="smooth-content">
-          <div className="top-[100vh] pb-[150vh] relative">
+          <div className="top-[100vh] pb-[200vh] lg:pb-[160vh] relative">
             <FeatureGroup1 />
             <FeatureGroup2 />
             <FeatureGroup3 />
@@ -213,7 +224,7 @@ export default function IndexPage() {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 w-full footer">
+      <div className="fixed bottom-0 w-full h-full footer bg-punch flex flex-col justify-end">
         <Launch />
         <Footer />
       </div>

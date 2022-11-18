@@ -5,17 +5,17 @@ export const FeatureGroup1 = () => {
 
   return (
     <div ref={app} className="featuregroup1">
-      <div className="bg-hunter dark:bg-linen text-linen dark:text-hunter pt-12 pb-24 lg:pb-64 min-h-screen">
-        <div className="max-w-screen-2xl mx-auto px-2 lg:px-8">
+      <div className="bg-hunter dark:bg-linen text-linen dark:text-hunter pt-24 pb-24 lg:pb-64 min-h-screen">
+        <div className="max-w-screen-2xl mx-auto px-0 md:px-6 lg:px-8">
           <h2
-            className="text-2xl text-center lg:text-8xl font-title tracking-tight text-punch col-span-2 leading-snug lg:leading-snug my-8 lg:my-40 bestlandlord"
+            className="px-6 md:px-0 text-5xl text-center lg:text-6xl font-title tracking-tight text-punch col-span-2 leading-0 lg:leading-snug my-8 lg:my-40 bestlandlord"
             data-speed="0.95"
           >
             Become the Best Landlord Ever.
           </h2>
           <div className="mt-24 lg:mt-32 space-y-32 lg:space-y-72">
             <article
-              className="bg-[#F2663F] rounded-2xl shadow-cool relative lg:aspect-video pt-8 pb-96 lg:py-12 px-6 lg:px-8 overflow-hidden bg-homelandingpage bg-center bg-cover featuregroup1-item"
+              className="bg-[#F2663F] md:rounded-2xl shadow-cool relative lg:aspect-video pt-8 pb-96 lg:py-12 px-6 lg:px-8 overflow-hidden bg-homelandingpage bg-center bg-cover featuregroup1-item"
               data-speed="0.9"
             >
               <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-hunter/90 to-transparent" />
@@ -24,7 +24,7 @@ export const FeatureGroup1 = () => {
                   Showcase your place.
                 </h3>
 
-                <p className="lg:max-w-xl text-base lg:text-xl font-semibold tracking-tight leading-loose text-linen featuregroup1-content">
+                <p className="lg:max-w-xl text-base lg:text-xl font-semibold tracking-tight lg:leading-loose text-linen featuregroup1-content">
                   TADA! encourages you to share your listing to get the most exposure. We provide a unique URL for your
                   listing that you can embed and share. No more copying and pasting the same information on multiple
                   sites - we’ll help with that. Upload unlimited images, videos and virtual tours to your listing.
@@ -32,7 +32,7 @@ export const FeatureGroup1 = () => {
               </div>
             </article>
             <article
-              className="bg-[#F2663F] rounded-2xl shadow-cool relative lg:aspect-video pt-8 pb-96 lg:py-12 px-6 lg:px-8 overflow-hidden bg-homeshare bg-center bg-cover featuregroup1-item"
+              className="bg-[#F2663F] md:rounded-2xl shadow-cool relative lg:aspect-video pt-8 pb-96 lg:py-12 px-6 lg:px-8 overflow-hidden bg-homeshare bg-center bg-cover featuregroup1-item"
               data-speed="0.9"
             >
               <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-hunter/90 to-transparent" />
@@ -41,7 +41,7 @@ export const FeatureGroup1 = () => {
                   Tell the world.
                 </h3>
 
-                <p className="lg:max-w-xl text-base lg:text-xl font-semibold tracking-tight leading-loose text-linen featuregroup1-content">
+                <p className="lg:max-w-xl text-base lg:text-xl font-semibold tracking-tight lg:leading-loose text-linen featuregroup1-content">
                   TADA! encourages you to share your listing to get the most exposure. We provide a unique URL for your
                   listing that you can embed and share. No more copying and pasting the same information on multiple
                   sites - we’ll help with that. Upload unlimited images, videos and virtual tours to your listing.
@@ -49,7 +49,7 @@ export const FeatureGroup1 = () => {
               </div>
             </article>
             <article
-              className="bg-[#F2663F] rounded-2xl shadow-cool relative lg:aspect-video pt-8 pb-96 lg:py-12 px-6 lg:px-8 overflow-hidden bg-homemaintenance bg-center bg-cover featuregroup1-item"
+              className="bg-[#F2663F] md:rounded-2xl shadow-cool relative lg:aspect-video pt-8 pb-96 lg:py-12 px-6 lg:px-8 overflow-hidden bg-homemaintenance bg-center bg-cover featuregroup1-item"
               data-speed="0.9"
             >
               <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-hunter/90 to-transparent" />
@@ -58,7 +58,7 @@ export const FeatureGroup1 = () => {
                   Keep it nice.
                 </h3>
 
-                <p className="lg:max-w-xl text-base lg:text-xl font-semibold tracking-tight leading-loose text-linen featuregroup1-content">
+                <p className="lg:max-w-xl text-base lg:text-xl font-semibold tracking-tight lg:leading-loose text-linen featuregroup1-content">
                   TADA! encourages you to share your listing to get the most exposure. We provide a unique URL for your
                   listing that you can embed and share. No more copying and pasting the same information on multiple
                   sites - we’ll help with that. Upload unlimited images, videos and virtual tours to your listing.
