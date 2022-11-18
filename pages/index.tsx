@@ -26,7 +26,7 @@ export default function IndexPage() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
-      const breakPoint = 800
+      const breakPoint = 1024
       ScrollSmoother.create({
         effects: true,
         smooth: 1.75, // seconds it takes to "catch up" to native scroll position
