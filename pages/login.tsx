@@ -1,9 +1,9 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { NextPage } from 'next'
-import { Database } from 'types/supabase'
+// import { Database } from 'types/supabase'
 
 const SignIn: NextPage = () => {
-  const supabase = useSupabaseClient<Database>()
+  const supabase = useSupabaseClient<any>()
 
   const handleSignIn = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
