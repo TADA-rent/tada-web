@@ -27,10 +27,6 @@ export default function IndexPage() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
       const breakPoint = 1024
-      ScrollSmoother.create({
-        effects: true,
-        smooth: 1.75, // seconds it takes to "catch up" to native scroll position
-      })
 
       mm.add(
         {
@@ -41,6 +37,11 @@ export default function IndexPage() {
         },
         (context) => {
           const { isDesktop, isMobile, reduceMotion } = context.conditions as any
+          ScrollSmoother.create({
+            effects: true,
+            smoothTouch: true,
+            smooth: isMobile ? 0.25 : 1.75, // seconds it takes to "catch up" to native scroll position
+          })
 
           tl.current = gsap.timeline()
 
@@ -107,7 +108,7 @@ export default function IndexPage() {
               .from('.bestlandlord', { opacity: 0, y: -10, duration: 1.25, ease: 'power2.out' }),
           })
 
-          gsap.set('.featuregroup1-item', { opacity: 0, y: 10, scale: 0.98 })
+          gsap.set('.featuregroup1-item', { opacity: 0, y: isMobile ? 0 : 10, scale: 0.98 })
           gsap.set('.featuregroup1-content, .featuregroup1-title', { opacity: 0 })
           ScrollTrigger.batch('.featuregroup1-item', {
             start: 'top 90%',
@@ -120,9 +121,14 @@ export default function IndexPage() {
                 .timeline()
                 .to(batch, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.5, duration: 0.5, ease: 'power2.out' }),
             onLeave: (batch) =>
-              gsap
-                .timeline()
-                .to(batch, { autoAlpha: 0, y: 10, scale: 1, stagger: 0.5, duration: 1.25, ease: 'power2.out' }),
+              gsap.timeline().to(batch, {
+                autoAlpha: 0,
+                y: isMobile ? 0 : 10,
+                scale: 1,
+                stagger: 0.5,
+                duration: 1.25,
+                ease: 'power2.out',
+              }),
           })
 
           ScrollTrigger.batch('.featuregroup1-title', {
