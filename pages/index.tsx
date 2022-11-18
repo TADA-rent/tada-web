@@ -40,7 +40,7 @@ export default function IndexPage() {
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {
-          const { isDesktop, isMobile, reduceMotion } = context.conditions
+          const { isDesktop, isMobile, reduceMotion } = context.conditions as any
 
           tl.current = gsap.timeline()
 
