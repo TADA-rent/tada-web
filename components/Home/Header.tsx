@@ -47,11 +47,11 @@ export const Header = () => {
           loop
           className="inset-0 absolute w-full h-full object-cover object-center"
         ></video>
-        <div className="bg-gradient-to-t from-hunter/80  to-transparent absolute inset-0 header-gradient" />
+        <div className="bg-gradient-to-t lg:bg-gradient-to-r from-hunter/80  to-transparent absolute inset-0 header-gradient" />
       </div>
       <div className="h-full w-full absolute bg-punch top-0 left-0 header-curtain flex items-center justify-center overflow-hidden shadow-cool z-50">
         <p
-          className="font-black font-title uppercase text-hunter header-tada tracking-widest leading-0 absolute top-64"
+          className="font-black font-title uppercase  text-hunter header-tada tracking-widest leading-0 absolute top-64"
           style={{ fontSize: '25vw' }}
         >
           TADA!
@@ -59,21 +59,18 @@ export const Header = () => {
       </div>
 
       <div className="absolute inset-0 flex items-center">
-        <div className="max-w-screen-2xl mx-auto h-full">
-          <div className="h-full lg:gap-0">
-            <div className="w-full absolute top-1/4 mt-12 left-0 text-center">
-              <h1 className="text-punch leading-0 tracking-tight header-title font-title" style={{ fontSize: '12vw' }}>
-                Rent Better.
-              </h1>
-            </div>
-            <div className="lg:w-full space-y-2 lg:pb-0 header-content text-center absolute left-0 bottom-32">
-              <div className="max-w-prose mx-auto space-y-6">
-                <p className="font-bold text-2xl leading-relaxed dark:text-linen text-hunter">
-                  TADA! is creating the best tools for renters and landlords to work together. We're focused on
-                  improving housing access for all.
-                </p>
-                <p className="text-punch uppercase text-5xl tracking-widest font-title">Coming Soon.</p>
-              </div>
+        <div className="max-w-screen-2xl px-6 mx-auto w-full h-full flex flex-col justify-end pb-16 lg:pb-0 lg:block relative">
+          <h1 className="text-center lg:text-left text-punch leading-0 text-8xl lg:text-[10vw] tracking-tight header-title font-title lg:absolute top-1/3 left-0 -space-y-16">
+            Rent Better.
+          </h1>
+
+          <div className="lg:w-full space-y-2 lg:pb-0 header-content lg:absolute top-1/2 left-0 ">
+            <div className="max-w-prose space-y-6">
+              <p className="font-bold text-xl lg:text-2xl leading-relaxed text-linen lg:dark:text-linen lg:text-hunter">
+                TADA! is creating the best tools for renters and landlords to work together. We're focused on improving
+                housing access for all.
+              </p>
+              <p className="text-punch uppercase text-3xl lg:text-5xl tracking-widest font-title">Coming Soon.</p>
             </div>
           </div>
         </div>
