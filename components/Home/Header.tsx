@@ -59,8 +59,8 @@ export const Header = () => {
       </div>
 
       <div className="absolute inset-0 flex items-center">
-        <div className="max-w-screen-2xl px-6 mx-auto w-full h-full flex flex-col justify-end pb-16 lg:pb-0 lg:block relative">
-          <h1 className="text-center lg:text-left text-punch leading-0 text-8xl lg:text-[10vw] tracking-tight header-title font-title lg:absolute top-1/3 left-0 -space-y-16">
+        <div className="max-w-screen-2xl px-6 mx-auto w-full h-full flex flex-col justify-center pt-16 lg:pb-0 lg:block relative">
+          <h1 className=" text-punch leading-0 text-8xl lg:text-[10vw] tracking-tight header-title font-title lg:absolute top-1/3 left-0 -space-y-96 lg:space-y-0">
             Rent Better.
           </h1>
 

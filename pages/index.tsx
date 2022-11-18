@@ -50,7 +50,7 @@ export default function IndexPage() {
           const splitTextParent = new SplitText('.header-title', { type: 'words', wordsClass: 'overflow-hidden' })
           const splitTextChild = new SplitText('.header-title', {
             type: 'words',
-            wordsClass: isMobile ? 'inline leading-0' : 'inline',
+            wordsClass: isMobile ? 'inline leading-0 -space-y-48' : 'inline',
           })
 
           const intro = gsap
@@ -73,14 +73,14 @@ export default function IndexPage() {
               '.header-video',
               { left: '0', top: '0', right: '0', bottom: '0', borderRadius: 0, ease: 'power2.out' },
               {
-                left: isMobile ? '0.5rem' : '50%',
-                top: isMobile ? '0.5rem' : '4rem',
-                right: isMobile ? '0.5rem' : '4rem',
-                bottom: isMobile ? '0.5rem' : '4rem',
+                left: isMobile ? '0' : '50%',
+                top: isMobile ? '0' : '4rem',
+                right: isMobile ? '0' : '4rem',
+                bottom: isMobile ? '0' : '4rem',
                 ease: 'back.out(1.7)',
                 delay: 0.5,
                 duration: 1.5,
-                borderRadius: '2rem',
+                borderRadius: isMobile ? '0' : '2rem',
               },
               '-=25%',
             )
