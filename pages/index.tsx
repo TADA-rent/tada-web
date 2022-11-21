@@ -17,31 +17,70 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, GSDevTools)
 }
 
-export default function IndexPage() {
-  const isDark = Math.random() >= 0.5
-  const comp = useRef<HTMLDivElement>(null)
-  const tl = useRef<any>(null)
-  const tools = useRef<any>(null)
+function useGsapTimeline() {
+  const timeline = useRef<any>(null)
+  const mmContext = useRef<any>(null)
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
-      const breakPoint = 1024
+      const md = 768
+      const lg = 1024
+      const xl = 1280
 
       mm.add(
         {
           // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
-          isDesktop: `(min-width: ${breakPoint}px)`,
-          isMobile: `(max-width: ${breakPoint - 1}px)`,
+          isDesktop: `(min-width: ${lg}px)`,
+          isLarge: `(min-width: ${xl}px)`,
+          isTablet: `(min-width: ${md}px)`,
+          isMobile: `(max-width: ${md - 1}px)`,
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {
-          const { isDesktop, isMobile, reduceMotion } = context.conditions as any
-          ScrollSmoother.create({
-            effects: true,
-            smoothTouch: true,
-            smooth: isMobile ? 0.25 : 1.75, // seconds it takes to "catch up" to native scroll position
-          })
+          mmContext.current = context.conditions as any
+          timeline.current = gsap.timeline()
+        },
+      ) // <- true means "call the function now"
+    })
+
+    return () => ctx.revert() // cleanup
+  }, [])
+
+  return {
+    timeline: timeline.current,
+    mm: mmContext.current,
+  }
+}
+
+export default function IndexPage() {
+  const isDark = Math.random() >= 0.5
+  const comp = useRef<HTMLDivElement>(null)
+  const tl = useRef<any>(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia()
+      const md = 768
+      const lg = 1024
+      const xl = 1280
+
+      mm.add(
+        {
+          // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
+          isDesktop: `(min-width: ${lg}px)`,
+          isLarge: `(min-width: ${xl}px)`,
+          isTablet: `(min-width: ${md}px)`,
+          isMobile: `(max-width: ${md - 1}px)`,
+          reduceMotion: '(prefers-reduced-motion: reduce)',
+        },
+        (context) => {
+          const { isDesktop, isMobile, isTablet, reduceMotion } = context.conditions as any
+          // const smoother = ScrollSmoother.create({
+          //   effects: true,
+          //   smoothTouch: true,
+          //   smooth: isMobile ? 0.25 : 1.75, // seconds it takes to "catch up" to native scroll position
+          // })
 
           tl.current = gsap.timeline()
 
@@ -101,11 +140,10 @@ export default function IndexPage() {
                 right: isMobile ? '0' : '4rem',
                 bottom: isMobile ? '0' : '4rem',
                 ease: 'back.out(1.8)',
-                delay: 0.5,
                 duration: 1.75,
                 borderRadius: isMobile ? '0' : '2rem',
               },
-              '-=40%',
+              '<',
             )
             .to('.header-gradient', { autoAlpha: 1, duration: 1, ease: 'power2.out' }, '<')
             .to('.header-content', { autoAlpha: 1, y: 0, duration: 1, ease: 'power2.out' }, '<25%')
@@ -158,18 +196,22 @@ export default function IndexPage() {
             animation: gsap
               .timeline()
               .from('.featuregroup2-image', { opacity: 0, y: -10, duration: 1.25, ease: 'power2.out' })
-              .from('.featuregroup2-title', { opacity: 0, x: -5, duration: 1.25, ease: 'power2.out' }),
+              .from('.featuregroup2-title', { opacity: 0, x: -5, duration: 1.25, ease: 'power2.out' }, '-=70%'),
           })
 
           ScrollTrigger.create({
             trigger: '.featuregroup2-content',
             start: 'top bottom',
-            animation: gsap.timeline().from('.featuregroup2-content', { opacity: 0 }).from('.featuregroup2-subtitle', {
-              opacity: 0,
-              y: -5,
-              duration: 1.25,
-              ease: 'power2.out',
-            }),
+            animation: gsap.timeline().from('.featuregroup2-content', { opacity: 0 }).from(
+              '.featuregroup2-subtitle',
+              {
+                opacity: 0,
+                y: -5,
+                duration: 0.5,
+                ease: 'power2.out',
+              },
+              '<',
+            ),
           })
         },
         comp,
@@ -193,7 +235,7 @@ export default function IndexPage() {
         trigger: '.price-feature',
         start: 'top bottom',
         onEnter: () => {
-          gsap.set('.footer', { zIndex: -5 })
+          gsap.set('.footer', { zIndex: 0 })
           gsap.set('.header-intro', { zIndex: -10 })
         },
         onLeaveBack: () => {
@@ -214,15 +256,12 @@ export default function IndexPage() {
       <div className="fixed inset-0 header-intro">
         <Header />
       </div>
-      <div id="smooth-wrapper" className="relative z-20">
-        <div id="smooth-content">
-          <div className="top-[100vh] pb-[200vh] lg:pb-[160vh] relative">
-            <FeatureGroup1 />
-            <FeatureGroup2 />
-            <FeatureGroup3 />
-            <Price />
-          </div>
-        </div>
+
+      <div className="mt-[100vh] relative z-50 w-full">
+        <FeatureGroup1 />
+        <FeatureGroup2 />
+        <FeatureGroup3 />
+        <Price />
       </div>
       <div className="fixed bottom-0 w-full h-full footer bg-punch flex flex-col justify-end">
         <Launch />

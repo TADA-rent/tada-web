@@ -11,7 +11,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body className="bg-punch">
+        <body className="bg-punch pb-[100vh] lg:pb-[60vh]">
           <Main />
           <NextScript />
         </body>
