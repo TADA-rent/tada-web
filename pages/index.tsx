@@ -7,14 +7,12 @@ import { FeatureGroup3 } from 'components/Home/FeatureGroup3'
 import { Header } from 'components/Home/Header'
 import { Price } from 'components/Home/Price'
 import { gsap } from 'gsap'
-import { GSDevTools } from 'gsap/dist/GSDevTools'
-import { ScrollSmoother } from 'gsap/dist/ScrollSmoother'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { SplitText } from 'gsap/dist/SplitText'
 import { useLayoutEffect, useRef } from 'react'
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText, GSDevTools)
+  gsap.registerPlugin(ScrollTrigger, SplitText)
 }
 
 function useGsapTimeline() {
@@ -76,11 +74,6 @@ export default function IndexPage() {
         },
         (context) => {
           const { isDesktop, isMobile, isTablet, reduceMotion } = context.conditions as any
-          // const smoother = ScrollSmoother.create({
-          //   effects: true,
-          //   smoothTouch: true,
-          //   smooth: isMobile ? 0.25 : 1.75, // seconds it takes to "catch up" to native scroll position
-          // })
 
           tl.current = gsap.timeline()
 
